@@ -20,5 +20,27 @@ class BackgroundGpsModule(reactContext: ReactApplicationContext) : ReactContextB
     
     }
 
+	@ReactMethod
+    public void getModuleList(final Callback callback) {
+        try {
+
+            WritableArray list = getList();
+            callback.invoke(null, list);
+
+        } catch (Exception e) {
+            callback.invoke("Error", null);
+        }
+    }
+
+
+   private WritableArray getList() {
+
+        WritableArray listArr = Arguments.createArray();
+        listArr.pushString("react-native-fbsdk");
+        listArr.pushString("react-native-camera");
+        listArr.pushString("react-native-map");
+
+        return listArr;
+    }
     
 }
